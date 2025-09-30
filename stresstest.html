@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Simulasi Stress Test Recovery Plan - Bank ABC - Developed by Leonard Tiopan Panjaitan, MT, CSRA, CGPS, CPS</title>
+    <title>Kalkulator Simulasi Recovery Plan - Bank ABC - Created by Leonard Tiopan Panjaitan, MT, CSRA, CGPS, CPS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,319 +12,226 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-       .metric-card {
+        .result-box {
             transition: all 0.3s ease-in-out;
         }
-       .status-green { background-color: #ecfdf5; border-left-color: #10b981; color: #047857; }
-       .status-yellow { background-color: #fefce8; border-left-color: #f59e0b; color: #b45309; }
-       .status-red { background-color: #fef2f2; border-left-color: #ef4444; color: #b91c1c; }
+        .bg-good { background-color: #dcfce7; color: #166534; }
+        .bg-warning { background-color: #fef9c3; color: #854d0e; }
+        .bg-crisis { background-color: #fee2e2; color: #991b1b; }
+        .form-input {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #d1d5db;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.3);
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-gray-100 text-gray-800">
 
-    <header class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-3xl font-bold text-teal-700">Kalkulator Simulasi Stress Test</h1>
-            <p class="mt-1 text-lg text-slate-600">Untuk Rencana Aksi Pemulihan (Recovery Plan) Bank ABC</p>
-        </div>
-    </header>
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-800">Kalkulator Simulasi Stress Test & Recovery Plan</h1>
+            <p class="mt-2 text-gray-600">Alat interaktif untuk mengukur dampak skenario krisis dan efektivitas opsi pemulihan.</p>
+        </header>
 
-    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div class="bg-teal-50 border-l-4 border-teal-500 text-teal-800 p-4 rounded-md mb-8" role="alert">
-            <p class="font-bold">Catatan Penggunaan:</p>
-            <p>Kalkulator ini adalah alat simulasi yang disederhanakan untuk tujuan pelatihan. Model dan asumsi yang digunakan didasarkan pada laporan "Uji Tekan Kuantitatif" yang telah dibahas sebelumnya. Hasil yang ditampilkan bersifat ilustratif.</p>
-        </div>
-
-        <section id="inputs" class="mb-10">
-            <h2 class="text-2xl font-bold text-teal-700 mb-4 border-b pb-2">Langkah 1: Masukkan Parameter Awal Bank ABC</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-6 rounded-lg shadow">
-                <div>
-                    <label for="totalAssets" class="block text-sm font-medium text-slate-700">Total Aset (Miliar Rp)</label>
-                    <input type="number" id="totalAssets" value="120000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="totalEquity" class="block text-sm font-medium text-slate-700">Total Modal/Ekuitas (Miliar Rp)</label>
-                    <input type="number" id="totalEquity" value="20000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="atmr" class="block text-sm font-medium text-slate-700">Aset Tertimbang Menurut Risiko (ATMR) (Miliar Rp)</label>
-                    <input type="number" id="atmr" value="100000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="totalLoans" class="block text-sm font-medium text-slate-700">Total Kredit Disalurkan (Miliar Rp)</label>
-                    <input type="number" id="totalLoans" value="80000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="nplAmount" class="block text-sm font-medium text-slate-700">Nominal NPL (Miliar Rp)</label>
-                    <input type="number" id="nplAmount" value="2000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="totalDeposits" class="block text-sm font-medium text-slate-700">Total Dana Pihak Ketiga (DPK) (Miliar Rp)</label>
-                    <input type="number" id="totalDeposits" value="90000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="hqla" class="block text-sm font-medium text-slate-700">High-Quality Liquid Assets (HQLA) (Miliar Rp)</label>
-                    <input type="number" id="hqla" value="18000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="netCashOutflow" class="block text-sm font-medium text-slate-700">Arus Kas Keluar Bersih (30 hari) (Miliar Rp)</label>
-                    <input type="number" id="netCashOutflow" value="12000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-            </div>
-        </section>
-
-        <section id="scenarios" class="mb-10">
-            <h2 class="text-2xl font-bold text-teal-700 mb-4 border-b pb-2">Langkah 2: Pilih Skenario Stres dan Jalankan Simulasi</h2>
-            <div class="bg-white p-6 rounded-lg shadow">
-                <fieldset class="space-y-4">
-                    <legend class="sr-only">Pilih Skenario</legend>
-                    <div class="flex items-center">
-                        <input id="recessionScenario" name="scenario" type="radio" value="recession" checked class="h-4 w-4 border-slate-300 text-teal-600 focus:ring-teal-500">
-                        <label for="recessionScenario" class="ml-3 block text-sm font-medium text-slate-700">
-                            <span class="font-bold">Skenario Resesi Ekonomi Berat:</span> Guncangan pada Kualitas Aset & Permodalan.
-                        </label>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Kolom Input -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Input Baseline -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-bold mb-4 text-gray-700 border-b pb-2">1. Input Data Baseline Bank (dalam Miliar Rp)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="totalModal" class="block text-sm font-medium text-gray-700">Total Modal</label>
+                            <input type="number" id="totalModal" class="form-input mt-1" value="18000">
+                        </div>
+                        <div>
+                            <label for="atmr" class="block text-sm font-medium text-gray-700">Aset Tertimbang Menurut Risiko (ATMR)</label>
+                            <input type="number" id="atmr" class="form-input mt-1" value="100000">
+                        </div>
+                        <div>
+                            <label for="hqla" class="block text-sm font-medium text-gray-700">Aset Likuid Berkualitas Tinggi (HQLA)</label>
+                            <input type="number" id="hqla" class="form-input mt-1" value="30000">
+                        </div>
+                        <div>
+                            <label for="arusKasKeluar" class="block text-sm font-medium text-gray-700">Total Arus Kas Keluar Bersih (30 hari)</label>
+                            <input type="number" id="arusKasKeluar" class="form-input mt-1" value="20000">
+                        </div>
+                        <div>
+                            <label for="totalAset" class="block text-sm font-medium text-gray-700">Total Aset</label>
+                            <input type="number" id="totalAset" class="form-input mt-1" value="120000">
+                        </div>
+                        <div>
+                            <label for="kreditBermasalah" class="block text-sm font-medium text-gray-700">Kredit Bermasalah (NPL)</label>
+                            <input type="number" id="kreditBermasalah" class="form-input mt-1" value="2000">
+                        </div>
+                         <div>
+                            <label for="totalKredit" class="block text-sm font-medium text-gray-700">Total Kredit</label>
+                            <input type="number" id="totalKredit" class="form-input mt-1" value="80000">
+                        </div>
                     </div>
-                    <div class="flex items-center">
-                        <input id="liquidityScenario" name="scenario" type="radio" value="liquidity" class="h-4 w-4 border-slate-300 text-teal-600 focus:ring-teal-500">
-                        <label for="liquidityScenario" class="ml-3 block text-sm font-medium text-slate-700">
-                            <span class="font-bold">Skenario Guncangan Likuiditas:</span> Simulasi penarikan dana nasabah (rush).
-                        </label>
+                </div>
+
+                <!-- Input Skenario Stres -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-bold mb-4 text-gray-700 border-b pb-2">2. Pilih Skenario & Input Stres (%)</h2>
+                     <div class="space-y-4">
+                        <div>
+                            <label for="creditLossShock" class="block text-sm font-medium text-gray-700">Skenario Resesi: Guncangan Kerugian Kredit (%)</label>
+                            <input type="number" id="creditLossShock" class="form-input mt-1" value="5">
+                        </div>
+                        <div>
+                            <label for="depositOutflow" class="block text-sm font-medium text-gray-700">Skenario Likuiditas: Arus Keluar Deposito (%)</label>
+                            <input type="number" id="depositOutflow" class="form-input mt-1" value="25">
+                        </div>
                     </div>
-                </fieldset>
-                <button id="runSimulation" class="mt-6 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
-                    Jalankan Simulasi
-                </button>
+                </div>
+
+                <!-- Opsi Pemulihan -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-bold mb-4 text-gray-700 border-b pb-2">3. Input Opsi Pemulihan (dalam Miliar Rp)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="capitalInjection" class="block text-sm font-medium text-gray-700">Injeksi Modal</label>
+                            <input type="number" id="capitalInjection" class="form-input mt-1" value="3000">
+                        </div>
+                        <div>
+                            <label for="emergencyFunding" class="block text-sm font-medium text-gray-700">Pendanaan Darurat (Repo, dll)</label>
+                            <input type="number" id="emergencyFunding" class="form-input mt-1" value="5000">
+                        </div>
+                    </div>
+                </div>
+
+                <button id="calculateBtn" class="w-full bg-blue-700 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-800 transition-colors">Hitung Simulasi</button>
             </div>
-        </section>
 
-        <section id="results" class="mb-10">
-            <h2 class="text-2xl font-bold text-teal-700 mb-4 border-b pb-2">Hasil Simulasi Uji Tekan</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <h3 class="text-xl font-bold text-center text-slate-700 mb-4">Kondisi Awal (Baseline)</h3>
-                    <div id="baselineResults" class="space-y-4"></div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <h3 class="text-xl font-bold text-center text-slate-700 mb-4">Kondisi Stres</h3>
-                    <div id="stressResults" class="space-y-4"></div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <h3 class="text-xl font-bold text-center text-slate-700 mb-4">Kondisi Setelah Pemulihan</h3>
-                    <div id="recoveryResults" class="space-y-4"></div>
+            <!-- Kolom Hasil -->
+            <div class="lg:col-span-2">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Hasil Simulasi</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Baseline</h3>
+                             <div id="baselineResults" class="space-y-2"></div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2 text-red-600">Kondisi Stres</h3>
+                            <div id="stressedResults" class="space-y-2"></div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2 text-green-600">Pasca-Pemulihan</h3>
+                            <div id="recoveryResults" class="space-y-2"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <section id="recoveryOptions" class="mb-10 hidden">
-            <h2 class="text-2xl font-bold text-teal-700 mb-4 border-b pb-2">Langkah 3: Terapkan Opsi Pemulihan</h2>
-            <div class="bg-white p-6 rounded-lg shadow">
-                <div id="recessionRecovery" class="hidden">
-                    <p class="text-sm text-slate-600 mb-4">Simulasi menunjukkan CAR jatuh di bawah ambang batas. Opsi pemulihan utama adalah suntikan modal untuk memperkuat permodalan.</p>
-                    <label for="capitalInjection" class="block text-sm font-medium text-slate-700">Jumlah Suntikan Modal (Miliar Rp)</label>
-                    <input type="number" id="capitalInjection" value="1500" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-                <div id="liquidityRecovery" class="hidden">
-                    <p class="text-sm text-slate-600 mb-4">Simulasi menunjukkan LCR jatuh di bawah 100%. Opsi pemulihan utama adalah mendapatkan dukungan likuiditas (misalnya, melalui penjualan SBN ke BI).</p>
-                    <label for="liquiditySupport" class="block text-sm font-medium text-slate-700">Jumlah Dukungan Likuiditas (Miliar Rp)</label>
-                    <input type="number" id="liquiditySupport" value="5000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                </div>
-                <button id="applyRecovery" class="mt-6 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Terapkan Opsi Pemulihan
-                </button>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-white mt-12 border-t">
-        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-slate-500 text-sm">
-            <p>&copy; 2025 Bank ABC. Kalkulator Simulasi untuk Tujuan Pelatihan Internal.</p>
         </div>
-    </footer>
+        
+        <div class="mt-8 text-center">
+             <a href="https://leonardtiopan.github.io/bankingfinance/index.html" class="inline-block bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 transition-colors">
+                Back to the Main Page
+             </a>
+        </div>
+
+    </div>
 
     <script>
+        document.getElementById('calculateBtn').addEventListener('click', () => {
+            // --- Ambil Nilai Input ---
+            const totalModal = parseFloat(document.getElementById('totalModal').value);
+            const atmr = parseFloat(document.getElementById('atmr').value);
+            const hqla = parseFloat(document.getElementById('hqla').value);
+            const arusKasKeluar = parseFloat(document.getElementById('arusKasKeluar').value);
+            const totalAset = parseFloat(document.getElementById('totalAset').value);
+            const kreditBermasalah = parseFloat(document.getElementById('kreditBermasalah').value);
+            const totalKredit = parseFloat(document.getElementById('totalKredit').value);
+
+            const creditLossShock = parseFloat(document.getElementById('creditLossShock').value) / 100;
+            const depositOutflow = parseFloat(document.getElementById('depositOutflow').value) / 100;
+            
+            const capitalInjection = parseFloat(document.getElementById('capitalInjection').value);
+            const emergencyFunding = parseFloat(document.getElementById('emergencyFunding').value);
+
+            // --- 1. Kalkulasi Baseline ---
+            const baseCAR = (totalModal / atmr) * 100;
+            const baseLCR = (hqla / arusKasKeluar) * 100;
+            const baseNPL = (kreditBermasalah / totalKredit) * 100;
+
+            // --- 2. Kalkulasi Kondisi Stres ---
+            // Skenario Resesi (mempengaruhi CAR & NPL)
+            const kerugianKredit = totalKredit * creditLossShock;
+            const stressedModal = totalModal - kerugianKredit;
+            const stressedCAR = (stressedModal / atmr) * 100;
+            const stressedNPLAmount = kreditBermasalah + kerugianKredit;
+            const stressedNPL = (stressedNPLAmount / totalKredit) * 100;
+
+            // Skenario Likuiditas (mempengaruhi LCR)
+            const outflowTambahan = (totalAset - totalModal) * depositOutflow; // Proksi liabilitas
+            const stressedArusKasKeluar = arusKasKeluar + outflowTambahan;
+            const stressedLCR = (hqla / stressedArusKasKeluar) * 100; // Asumsi HQLA belum dijual
+            
+            // --- 3. Kalkulasi Pasca-Pemulihan ---
+            const recoveredModal = stressedModal + capitalInjection;
+            const recoveredCAR = (recoveredModal / atmr) * 100;
+            
+            const recoveredHQLA = hqla + emergencyFunding; // hqla awal + dana darurat
+            const recoveredLCR = (recoveredHQLA / stressedArusKasKeluar) * 100;
+            
+            // --- Tampilkan Hasil ---
+            displayResults('baselineResults', baseCAR, baseLCR, baseNPL);
+            displayResults('stressedResults', stressedCAR, stressedLCR, stressedNPL);
+            displayResults('recoveryResults', recoveredCAR, recoveredLCR, stressedNPL); // NPL tidak pulih seketika
+        });
+
+        function displayResults(elementId, car, lcr, npl) {
+            const container = document.getElementById(elementId);
+            
+            const carStatus = getStatus(car, 14, 10); // OJK min bervariasi, asumsi 10% crisis
+            const lcrStatus = getStatus(lcr, 100, 85);
+            const nplStatus = getStatus(npl, 5, 5, true); // Inverted logic for NPL
+            
+            container.innerHTML = `
+                <div class="result-box ${carStatus.class} p-3 rounded-md">
+                    <p class="font-semibold text-sm">CAR</p>
+                    <p class="font-bold text-xl">${car.toFixed(2)}%</p>
+                </div>
+                <div class="result-box ${lcrStatus.class} p-3 rounded-md">
+                    <p class="font-semibold text-sm">LCR</p>
+                    <p class="font-bold text-xl">${lcr.toFixed(2)}%</p>
+                </div>
+                <div class="result-box ${nplStatus.class} p-3 rounded-md">
+                    <p class="font-semibold text-sm">NPL (Gross)</p>
+                    <p class="font-bold text-xl">${npl.toFixed(2)}%</p>
+                </div>
+            `;
+        }
+        
+        function getStatus(value, goodThreshold, crisisThreshold, inverted = false) {
+            if (inverted) { // Untuk NPL, lebih rendah lebih baik
+                if (value >= crisisThreshold) {
+                    return { class: 'bg-crisis' };
+                }
+                return { class: 'bg-good' };
+            }
+
+            if (value >= goodThreshold) {
+                return { class: 'bg-good' };
+            } else if (value < goodThreshold && value >= crisisThreshold) {
+                return { class: 'bg-warning' };
+            } else {
+                return { class: 'bg-crisis' };
+            }
+        }
+
+        // Jalankan kalkulasi saat halaman pertama kali dimuat
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DOM Elements ---
-            const inputs = {
-                totalAssets: document.getElementById('totalAssets'),
-                totalEquity: document.getElementById('totalEquity'),
-                atmr: document.getElementById('atmr'),
-                totalLoans: document.getElementById('totalLoans'),
-                nplAmount: document.getElementById('nplAmount'),
-                totalDeposits: document.getElementById('totalDeposits'),
-                hqla: document.getElementById('hqla'),
-                netCashOutflow: document.getElementById('netCashOutflow'),
-            };
-            const runSimulationBtn = document.getElementById('runSimulation');
-            const applyRecoveryBtn = document.getElementById('applyRecovery');
-            const recoveryOptionsSection = document.getElementById('recoveryOptions');
-            const recessionRecoveryDiv = document.getElementById('recessionRecovery');
-            const liquidityRecoveryDiv = document.getElementById('liquidityRecovery');
-            const capitalInjectionInput = document.getElementById('capitalInjection');
-            const liquiditySupportInput = document.getElementById('liquiditySupport');
-
-            const baselineResultsDiv = document.getElementById('baselineResults');
-            const stressResultsDiv = document.getElementById('stressResults');
-            const recoveryResultsDiv = document.getElementById('recoveryResults');
-
-            // --- Thresholds for coloring ---
-            const thresholds = {
-                car: { crisis: 12, warning: 14 }, // Krisis < 12%, Peringatan < 14%
-                npl: { crisis: 5, warning: 3.5 }, // Krisis > 5%, Peringatan > 3.5%
-                lcr: { crisis: 100, warning: 120 } // Krisis < 100%, Peringatan < 120%
-            };
-
-            // --- State variables ---
-            let baseline = {};
-            let stressed = {};
-            let recovered = {};
-
-            // --- Helper Functions ---
-            const formatNumber = (num) => isNaN(num)? 'N/A' : num.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-            const createMetricCard = (title, value, unit, threshold, isNPL = false) => {
-                let statusClass = 'status-green';
-                if (threshold) {
-                    if (isNPL) { // Higher is worse for NPL
-                        if (value > threshold.crisis) statusClass = 'status-red';
-                        else if (value > threshold.warning) statusClass = 'status-yellow';
-                    } else { // Lower is worse for CAR/LCR
-                        if (value < threshold.crisis) statusClass = 'status-red';
-                        else if (value < threshold.warning) statusClass = 'status-yellow';
-                    }
-                }
-                
-                return `
-                    <div class="metric-card border-l-4 p-4 ${statusClass}">
-                        <p class="text-sm font-medium">${title}</p>
-                        <p class="text-2xl font-bold">${formatNumber(value)}${unit}</p>
-                    </div>
-                `;
-            };
-
-            const displayResults = () => {
-                baselineResultsDiv.innerHTML = `
-                    ${createMetricCard('CAR / KPMM', baseline.car, '%', thresholds.car)}
-                    ${createMetricCard('NPL Gross', baseline.npl, '%', thresholds.npl, true)}
-                    ${createMetricCard('LCR', baseline.lcr, '%', thresholds.lcr)}
-                `;
-                stressResultsDiv.innerHTML = `
-                    ${createMetricCard('CAR / KPMM', stressed.car, '%', thresholds.car)}
-                    ${createMetricCard('NPL Gross', stressed.npl, '%', thresholds.npl, true)}
-                    ${createMetricCard('LCR', stressed.lcr, '%', thresholds.lcr)}
-                `;
-                recoveryResultsDiv.innerHTML = `
-                    ${createMetricCard('CAR / KPMM', recovered.car, '%', thresholds.car)}
-                    ${createMetricCard('NPL Gross', recovered.npl, '%', thresholds.npl, true)}
-                    ${createMetricCard('LCR', recovered.lcr, '%', thresholds.lcr)}
-                `;
-            };
-
-            const calculateBaseline = () => {
-                const values = {};
-                for (const key in inputs) {
-                    values[key] = parseFloat(inputs[key].value) |
-
-| 0;
-                }
-
-                baseline.car = (values.totalEquity / values.atmr) * 100;
-                baseline.npl = (values.nplAmount / values.totalLoans) * 100;
-                baseline.lcr = (values.hqla / values.netCashOutflow) * 100;
-                
-                stressed = { car: NaN, npl: NaN, lcr: NaN };
-                recovered = { car: NaN, npl: NaN, lcr: NaN };
-                
-                displayResults();
-            };
-
-            // --- Event Listeners ---
-            Object.values(inputs).forEach(input => input.addEventListener('input', calculateBaseline));
-
-            runSimulationBtn.addEventListener('click', () => {
-                const selectedScenario = document.querySelector('input[name="scenario"]:checked').value;
-                const values = {};
-                for (const key in inputs) {
-                    values[key] = parseFloat(inputs[key].value) |
-
-| 0;
-                }
-
-                stressed = {...baseline }; // Start with baseline values
-                recovered = { car: NaN, npl: NaN, lcr: NaN }; // Reset recovery
-
-                if (selectedScenario === 'recession') {
-                    // --- Recession Logic ---
-                    const nplIncreaseFactor = 3; // Asumsi NPL naik 3x lipat
-                    const provisionCoverage = 0.5; // Asumsi bank mencadangkan 50% dari NPL baru
-
-                    const newNplAmount = values.nplAmount * nplIncreaseFactor;
-                    const additionalNpl = newNplAmount - values.nplAmount;
-                    const requiredProvision = additionalNpl * provisionCoverage; // Ini adalah kerugian yang memukul modal
-
-                    const stressedEquity = values.totalEquity - requiredProvision;
-                    
-                    stressed.npl = (newNplAmount / values.totalLoans) * 100;
-                    stressed.car = (stressedEquity / values.atmr) * 100;
-                    
-                    // Show relevant recovery option
-                    recoveryOptionsSection.classList.remove('hidden');
-                    recessionRecoveryDiv.classList.remove('hidden');
-                    liquidityRecoveryDiv.classList.add('hidden');
-
-                } else if (selectedScenario === 'liquidity') {
-                    // --- Liquidity Shock Logic ---
-                    const depositRunoffRate = 0.30; // Asumsi 30% DPK ditarik
-
-                    const depositOutflow = values.totalDeposits * depositRunoffRate;
-                    const stressedNetCashOutflow = values.netCashOutflow + depositOutflow;
-
-                    stressed.lcr = (values.hqla / stressedNetCashOutflow) * 100;
-
-                    // Show relevant recovery option
-                    recoveryOptionsSection.classList.remove('hidden');
-                    liquidityRecoveryDiv.classList.remove('hidden');
-                    recessionRecoveryDiv.classList.add('hidden');
-                }
-                
-                displayResults();
-            });
-
-            applyRecoveryBtn.addEventListener('click', () => {
-                const selectedScenario = document.querySelector('input[name="scenario"]:checked').value;
-                recovered = {...stressed }; // Start with stressed values
-
-                if (selectedScenario === 'recession') {
-                    const injectionAmount = parseFloat(capitalInjectionInput.value) |
-
-| 0;
-                    const stressedEquity = (stressed.car / 100) * parseFloat(inputs.atmr.value);
-                    const recoveredEquity = stressedEquity + injectionAmount;
-                    recovered.car = (recoveredEquity / parseFloat(inputs.atmr.value)) * 100;
-
-                } else if (selectedScenario === 'liquidity') {
-                    const supportAmount = parseFloat(liquiditySupportInput.value) |
-
-| 0;
-                    const values = {};
-                    for (const key in inputs) {
-                        values[key] = parseFloat(inputs[key].value) |
-
-| 0;
-                    }
-                    const depositRunoffRate = 0.30;
-                    const depositOutflow = values.totalDeposits * depositRunoffRate;
-                    const stressedNetCashOutflow = values.netCashOutflow + depositOutflow;
-                    
-                    const recoveredHqla = values.hqla + supportAmount;
-                    recovered.lcr = (recoveredHqla / stressedNetCashOutflow) * 100;
-                }
-
-                displayResults();
-            });
-
-            // --- Initial Calculation ---
-            calculateBaseline();
+            document.getElementById('calculateBtn').click();
         });
     </script>
 </body>
