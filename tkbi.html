@@ -60,9 +60,10 @@ body { font-family: 'Inter', sans-serif; }
 let tkbiData = [];
 
 // ===== LOAD JSON =====
-fetch("tkbi_v3.json")
+fetch("./tkbi_v3.json")
 .then(res => res.json())
 .then(data => {
+    alert("JSON berhasil dimuat");
     tkbiData = data;
     renderTable(tkbiData);
 });
