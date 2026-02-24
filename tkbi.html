@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Explorer TKBI Versi 3</title>
+<title>TKBI Versi 3 – Explorer Non-UMKM</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 body { font-family: 'Inter', sans-serif; }
+.tree-item { cursor: pointer; }
 </style>
 </head>
 
@@ -18,93 +19,175 @@ body { font-family: 'Inter', sans-serif; }
 
 <div class="container mx-auto p-6">
 
-    <!-- HEADER -->
-    <header class="text-center mb-8">
-        <h1 class="text-3xl md:text-4xl font-bold text-[#003f5c]">
-            TKBI Versi 3 – Explorer Non-UMKM
-        </h1>
-        <p class="text-gray-600 mt-2">
-            Technical Screening Criteria – Taksonomi Keuangan Berkelanjutan Indonesia
-        </p>
-    </header>
+<!-- HEADER -->
+<header class="text-center mb-8">
+<h1 class="text-3xl md:text-4xl font-bold text-[#003f5c]">
+TKBI Versi 3 – Explorer Non-UMKM
+</h1>
 
-    <!-- SEARCH -->
-    <div class="bg-white rounded-lg shadow p-4 mb-6">
-        <input id="searchBox"
-               type="text"
-               placeholder="Cari KBLI, sektor, atau kata kunci..."
-               class="w-full border rounded-lg p-3">
-    </div>
+<p class="text-gray-600 mt-2">
+Technical Screening Criteria – Taksonomi Keuangan Berkelanjutan Indonesia
+</p>
 
-    <!-- TABLE -->
-    <div class="bg-white rounded-lg shadow overflow-auto">
-        <table class="min-w-full text-sm" id="tkbiTable">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="p-2 border">Sektor</th>
-                    <th class="p-2 border">KBLI</th>
-                    <th class="p-2 border">TSC</th>
-                    <th class="p-2 border">DNSH</th>
-                    <th class="p-2 border">RMT</th>
-                    <th class="p-2 border">Aspek Sosial</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
+<p class="text-sm text-gray-500 mt-1">
+Created by Leonard Tiopan Panjaitan, MT, CSRA, CGPS, CPS
+</p>
+</header>
+
+<!-- FILTER -->
+<div class="bg-white rounded-lg shadow p-4 mb-4 flex flex-wrap gap-3">
+
+<select id="filterClass" class="border rounded p-2">
+  <option value="all">Semua Klasifikasi</option>
+  <option value="Hijau">Hijau</option>
+  <option value="Transisi">Transisi</option>
+</select>
+
+<input id="searchBox"
+type="text"
+placeholder="Cari sektor atau aktivitas..."
+class="flex-1 border rounded p-2">
+
+<button id="exportBtn"
+class="bg-green-600 text-white px-4 py-2 rounded shadow hover:bg-green-700">
+Export Excel
+</button>
+
+</div>
+
+<!-- TREE -->
+<div id="treeContainer" class="bg-white rounded-lg shadow p-6"></div>
+
+<!-- BACK -->
+<div class="text-center mt-10">
+<a href="index.html"
+class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-700">
+⬅ Back to the Main Page
+</a>
+</div>
 
 </div>
 
 <script>
 
 let tkbiData = [];
+let filteredData = [];
 
-// ===== LOAD JSON =====
+// LOAD JSON
 fetch("./tkbi_v3_hierarchy_indonesia_min.json")
 .then(res => res.json())
 .then(data => {
-    alert("JSON berhasil dimuat");
     tkbiData = data;
-    renderTable(tkbiData);
+    filteredData = tkbiData;
+    renderTree(filteredData);
 });
 
 
-// ===== RENDER =====
-function renderTable(data) {
+// FILTER
+function applyFilter(){
+    const keyword = document.getElementById("searchBox").value.toLowerCase();
+    const klas = document.getElementById("filterClass").value;
 
-    const tbody = document.querySelector("#tkbiTable tbody");
-    tbody.innerHTML = "";
+    const result = tkbiData.map(sektor => {
 
-    data.forEach(row => {
+        const aktivitas = sektor.Aktivitas.filter(act => {
 
-        const tr = document.createElement("tr");
+            const matchSearch =
+                act.NamaAktivitas.toLowerCase().includes(keyword);
 
-        tr.innerHTML = `
-            <td class="border p-2">${row.Nama}</td>
-            <td class="border p-2">${row.KBLI}</td>
-            <td class="border p-2 whitespace-pre-wrap">${row.TSC}</td>
-            <td class="border p-2 whitespace-pre-wrap">${row.DNSH}</td>
-            <td class="border p-2 whitespace-pre-wrap">${row.RMT}</td>
-            <td class="border p-2 whitespace-pre-wrap">${row.AspekSosial}</td>
+            const matchClass =
+                klas === "all" ||
+                act.Klasifikasi.includes(klas);
+
+            return matchSearch && matchClass;
+        });
+
+        if(aktivitas.length > 0){
+            return {...sektor, Aktivitas: aktivitas};
+        }
+    });
+
+    filteredData = result.filter(x => x);
+    renderTree(filteredData);
+}
+
+document.getElementById("searchBox").addEventListener("input", applyFilter);
+document.getElementById("filterClass").addEventListener("change", applyFilter);
+
+
+// RENDER TREE
+function renderTree(data){
+
+const container = document.getElementById("treeContainer");
+container.innerHTML = "";
+
+data.forEach(sektor => {
+
+    const sektorDiv = document.createElement("div");
+    sektorDiv.className = "mb-4";
+
+    const header = document.createElement("div");
+    header.className = "tree-item font-semibold text-lg text-[#003f5c]";
+    header.innerHTML = "▶ " + sektor.Sektor;
+
+    const children = document.createElement("div");
+    children.style.display = "none";
+    children.className = "ml-4 mt-2";
+
+    header.onclick = () => {
+        children.style.display = children.style.display === "none" ? "block" : "none";
+        header.innerHTML = children.style.display === "block"
+            ? "▼ " + sektor.Sektor
+            : "▶ " + sektor.Sektor;
+    };
+
+    sektor.Aktivitas.forEach(act => {
+
+        const actDiv = document.createElement("div");
+        actDiv.className = "p-3 border rounded mb-2 bg-gray-50";
+
+        actDiv.innerHTML = `
+        <b>${act.NamaAktivitas}</b><br>
+        <span class="text-xs text-blue-600">${act.Klasifikasi}</span>
+        <div class="text-sm mt-2">${act.Keterangan}</div>
         `;
 
-        tbody.appendChild(tr);
+        children.appendChild(actDiv);
     });
+
+    sektorDiv.appendChild(header);
+    sektorDiv.appendChild(children);
+
+    container.appendChild(sektorDiv);
+});
 }
 
 
-// ===== SEARCH =====
-document.getElementById("searchBox").addEventListener("input", function () {
+// EXPORT EXCEL (CSV)
+document.getElementById("exportBtn").addEventListener("click", () => {
 
-    const keyword = this.value.toLowerCase();
+    let rows = [["Sektor","Aktivitas","Klasifikasi","Keterangan"]];
 
-    const filtered = tkbiData.filter(item =>
-        item.Nama.toLowerCase().includes(keyword) ||
-        item.KBLI.toLowerCase().includes(keyword) ||
-        item.TSC.toLowerCase().includes(keyword)
-    );
+    filteredData.forEach(sektor => {
+        sektor.Aktivitas.forEach(act => {
+            rows.push([
+                sektor.Sektor,
+                act.NamaAktivitas,
+                act.Klasifikasi,
+                act.Keterangan.replace(/<[^>]*>?/gm, "")
+            ]);
+        });
+    });
 
-    renderTable(filtered);
+    let csv = rows.map(e => e.join(",")).join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "TKBI_Filter.csv";
+    a.click();
 });
 
 </script>
