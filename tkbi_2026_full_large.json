@@ -1,0 +1,706 @@
+[
+  {
+    "sektor": "Energi",
+    "jumlah_subsektor": 1,
+    "subsektor": [
+      {
+        "nama_subsektor": "Energi",
+        "aktivitas": [
+          {
+            "nama": "Pertambangan dan Penggalian",
+            "kbli": "B",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Pertambangan Minyak Bumi dan Gas Alam dan Panas Bumi",
+            "kbli": "06",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Pertambangan Gas Alam dan Pengusahaan Tenaga Panas Bumi",
+            "kbli": "062",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Pertambangan Gas Alam dan Pengusahaan Tenaga Panas Bumi",
+            "kbli": "0620",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Pertambangan Gas Alam",
+            "kbli": "06201",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Penyimpanan CO2 geologis permanen bawah tanah",
+            "kbli": null,
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sektor": "Konstruksi dan Real Estate (C&RE)",
+    "jumlah_subsektor": 1,
+    "subsektor": [
+      {
+        "nama_subsektor": "Konstruksi dan Real Estate (C&RE)",
+        "aktivitas": [
+          {
+            "nama": "Real estate",
+            "kbli": "L",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Real estate",
+            "kbli": "6",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Real estate Yang Dimiliki Sendiri atau Disewa dan Kawasan Pariwisata",
+            "kbli": "681",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Real estate Yang Dimiliki Sendiri atau Disewa",
+            "kbli": "6811",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Real estate yang Dimiliki Sendiri atau Disewa",
+            "kbli": "68110",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Real Estate atau Kawasan Pemukiman yang didalamnya terdapat rumah untuk Masyarakat Berpenghasilan Rendah (MBR)",
+            "kbli": null,
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sektor": "Pengangkutan dan Pergudangan (T&S)",
+    "jumlah_subsektor": 1,
+    "subsektor": [
+      {
+        "nama_subsektor": "Pengangkutan dan Pergudangan (T&S)",
+        "aktivitas": [
+          {
+            "nama": "Pengangkutan dan Pergudangan",
+            "kbli": "H",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Angkutan Udara",
+            "kbli": "51",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Angkutan Udara Untuk Barang",
+            "kbli": "512",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Angkutan Udara Untuk Barang",
+            "kbli": "5120",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Angkutan Udara Tidak Berjadwal Dalam Negeri Perintis untuk Barang",
+            "kbli": "51205",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sektor": "Pertanian, Kehutanan, dan Perikanan (AFF)",
+    "jumlah_subsektor": 1,
+    "subsektor": [
+      {
+        "nama_subsektor": "Pertanian, Kehutanan, dan Perikanan (AFF)",
+        "aktivitas": [
+          {
+            "nama": "Kesenian, Hiburan dan Rekreasi",
+            "kbli": "R",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Perpustakaan, Arsip, Museum dan Kegiatan Kebudayaan Lainnya",
+            "kbli": "91",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Perpustakaan, Arsip, Museum dan Kegiatan Kebudayaan Lainnya",
+            "kbli": "910",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Aktivitas Kebun Binatang, Taman Botani dan Cadagan Alam",
+            "kbli": "9103",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Taman Buru, Kebun Buru dan Areal Buru",
+            "kbli": "91037",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sektor": "Informasi dan Komunikasi (IC)",
+    "jumlah_subsektor": 1,
+    "subsektor": [
+      {
+        "nama_subsektor": "Informasi dan Komunikasi (IC)",
+        "aktivitas": [
+          {
+            "nama": "Informasi Dan Komunikasi",
+            "kbli": "J",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Aktivitas Keinsinyuran Dan Konsultasi Teknis Ybdi",
+            "kbli": "62",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Aktivitas Pemrograman, Konsultasi Komputer Dan Kegiatan YBDI",
+            "kbli": "620",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Aktivitas Konsultasi Komputer dan Manajemen Fasilitas Komputer Lainnya",
+            "kbli": "6202",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Aktivitas Konsultasi Komputer dan Manajemen Fasilitas Komputer Lainnya",
+            "kbli": "62029",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sektor": "Manufaktur (IPPU)",
+    "jumlah_subsektor": 1,
+    "subsektor": [
+      {
+        "nama_subsektor": "Manufaktur (IPPU)",
+        "aktivitas": [
+          {
+            "nama": "Industri Pengolahan",
+            "kbli": "C",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "industri alat angkutan lainnya",
+            "kbli": "30",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Industri Lokomotif dan Gerbong Kereta",
+            "kbli": "303",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Industri Lokomotif dan Gerbong Kereta",
+            "kbli": "3030",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Industri Pesawat Terbang dan Perlengkapannya",
+            "kbli": "30300",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sektor": "Profesional, Ilmiah, dan Teknis (PST)",
+    "jumlah_subsektor": 1,
+    "subsektor": [
+      {
+        "nama_subsektor": "Profesional, Ilmiah, dan Teknis (PST)",
+        "aktivitas": [
+          {
+            "nama": "Aktivitas Profesional, Ilmiah dan Teknis",
+            "kbli": "M",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Penelitian dan Pengembangan Ilmu Pengetahuan",
+            "kbli": "72",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Penelitian Dan Pengembangan Ilmu Pengetahuan Sosial Dan Humaniora",
+            "kbli": "722",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Penelitian Dan Pengembangan Ilmu Pengetahuan Sosial Dan Humaniora",
+            "kbli": "7220",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Penelitian Dan Pengembangan Ilmu Pengetahuan Sosial",
+            "kbli": "72201",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Penelitian Pasar, Pengembangan, dan Inovasi",
+            "kbli": null,
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sektor": "Pengelolaan Air, Pengelolaan Air Limbah, Pengelolaan Sampah, dan Remediasi (WSSWMR)",
+    "jumlah_subsektor": 1,
+    "subsektor": [
+      {
+        "nama_subsektor": "Pengelolaan Air, Pengelolaan Air Limbah, Pengelolaan Sampah, dan Remediasi (WSSWMR)",
+        "aktivitas": [
+          {
+            "nama": "Treatment Air, Treatment Air Limbah, Treatment dan Pemulihan Material Sampah, dan Aktivitas Remediasi",
+            "kbli": "E",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Aktivitas Remediasi dan Pengelolaan Sampah Lainnya",
+            "kbli": "39",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Aktivitas Remediasi dan Pengelolaan Sampah Lainnya",
+            "kbli": "390",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Aktivitas Remediasi dan Pengelolaan Sampah Lainnya",
+            "kbli": "3900",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Aktivitas Remediasi dan Pengelolaan Sampah Lainnya",
+            "kbli": "39000",
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          },
+          {
+            "nama": "Remediasi Tempat Pemrosesan Akhir (TPA) yang Tidak Sesuai Ketentuan Hukum dan Tempat Pembuangan Sampah Terbengkalai atau Ilegal",
+            "kbli": null,
+            "esg": {
+              "tsc": [],
+              "dnsh": [],
+              "rmt": [],
+              "sosial": []
+            },
+            "metadata": {
+              "sumber": "TKBI v3 OJK",
+              "jenis": "activity_based"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
