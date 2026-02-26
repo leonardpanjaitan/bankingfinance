@@ -92,10 +92,10 @@ async function loadTKBI(){
 try{
 
 const [coreRes, dnshRes, safeRes, logicRes] = await Promise.all([
-fetch("./data/taxonomy_core.json?v=" + VERSION),
-fetch("./data/dnsh.json?v=" + VERSION),
-fetch("./data/safeguards.json?v=" + VERSION),
-fetch("./data/logic.json?v=" + VERSION)
+fetch("./taxonomy_core.json?v=" + VERSION),
+fetch("./dnsh.json?v=" + VERSION),
+fetch("./safeguards.json?v=" + VERSION),
+fetch("./logic.json?v=" + VERSION)
 ]);
 
 if(!coreRes.ok) throw "taxonomy_core.json tidak ditemukan";
