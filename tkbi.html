@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -7,19 +8,26 @@
 <title>TKBI Versi 3 – Explorer Non-UMKM</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Anti cache -->
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 
 <style>
 body { font-family: 'Inter', sans-serif; }
 .tree-item { cursor: pointer; }
 </style>
+
 </head>
 
 <body class="bg-gray-100 text-gray-800">
 
 <div class="container mx-auto p-6">
 
-<!-- HEADER -->
 <header class="text-center mb-8">
 <h1 class="text-3xl md:text-4xl font-bold text-[#003f5c]">
 TKBI Versi 3 – Explorer Non-UMKM
@@ -35,12 +43,13 @@ Created by Leonard Tiopan Panjaitan, MT, CSRA, CGPS, CPS
 </header>
 
 <!-- FILTER -->
+
 <div class="bg-white rounded-lg shadow p-4 mb-4 flex flex-wrap gap-3">
 
 <select id="filterClass" class="border rounded p-2">
-  <option value="all">Semua Klasifikasi</option>
-  <option value="Hijau">Hijau</option>
-  <option value="Transisi">Transisi</option>
+<option value="all">Semua Klasifikasi</option>
+<option value="Hijau">Hijau</option>
+<option value="Transisi">Transisi</option>
 </select>
 
 <input id="searchBox"
@@ -50,15 +59,16 @@ class="flex-1 border rounded p-2">
 
 <button id="exportBtn"
 class="bg-green-600 text-white px-4 py-2 rounded shadow hover:bg-green-700">
-Export Excel
-</button>
+Export Excel </button>
 
 </div>
 
 <!-- TREE -->
-<div id="treeContainer" class="bg-white rounded-lg shadow p-6"></div>
 
-<!-- BACK -->
+<div id="treeContainer" class="bg-white rounded-lg shadow p-6">
+Loading data...
+</div>
+
 <div class="text-center mt-10">
 <a href="index.html"
 class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-700">
@@ -70,125 +80,205 @@ class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-
 
 <script>
 
-let tkbiData = [];
-let filteredData = [];
+// ===== ANTI CACHE VERSION
+const VERSION = new Date().getTime();
 
-// LOAD JSON
-fetch("./TKBI_Explorer_8Sektor_Integrated.json")
-.then(res => res.json())
-.then(data => {
-    tkbiData = data;
-    filteredData = tkbiData;
-    renderTree(filteredData);
+// ===== DATA
+let explorerData = [];
+
+// ===== LOAD 4 JSON
+async function loadTKBI(){
+
+try{
+
+const [coreRes, dnshRes, safeRes, logicRes] = await Promise.all([
+fetch("./data/taxonomy_core.json?v=" + VERSION),
+fetch("./data/dnsh.json?v=" + VERSION),
+fetch("./data/safeguards.json?v=" + VERSION),
+fetch("./data/logic.json?v=" + VERSION)
+]);
+
+if(!coreRes.ok) throw "taxonomy_core.json tidak ditemukan";
+
+const core = await coreRes.json();
+const dnsh = await dnshRes.json();
+const safeguards = await safeRes.json();
+const logic = await logicRes.json();
+
+buildExplorer(core, dnsh, safeguards, logic);
+
+}catch(err){
+
+document.getElementById("treeContainer").innerHTML =
+"<b style='color:red'>Error:</b> " + err +
+"<br>Pastikan semua JSON ada di folder <b>/data</b>.";
+
+console.error(err);
+
+}
+
+}
+
+// ===== BUILD DATA
+function buildExplorer(core, dnsh, safeguards, logic){
+
+explorerData = [];
+
+Object.keys(core).forEach(sektor => {
+
+Object.keys(core[sektor]).forEach(tsc => {
+
+Object.keys(core[sektor][tsc]).forEach(kbli => {
+
+const item = core[sektor][tsc][kbli];
+
+explorerData.push({
+Sektor: sektor,
+TSC: tsc,
+KBLI: kbli,
+Klasifikasi: item.Klasifikasi,
+Aktivitas: item.Aktivitas,
+DNSH: dnsh[tsc] || [],
+Safeguards: safeguards[tsc] || [],
+Logic: logic[tsc] || []
 });
 
+});
 
-// FILTER
+});
+
+});
+
+renderTree(explorerData);
+
+}
+
+// ===== FILTER
 function applyFilter(){
-    const keyword = document.getElementById("searchBox").value.toLowerCase();
-    const klas = document.getElementById("filterClass").value;
 
-    const result = tkbiData.map(sektor => {
+const keyword =
+document.getElementById("searchBox").value.toLowerCase();
 
-        const aktivitas = sektor.Aktivitas.filter(act => {
+const klas =
+document.getElementById("filterClass").value;
 
-            const matchSearch =
-                act.NamaAktivitas.toLowerCase().includes(keyword);
+const filtered = explorerData.filter(row => {
 
-            const matchClass =
-                klas === "all" ||
-                act.Klasifikasi.includes(klas);
+const matchSearch =
+row.Aktivitas.toLowerCase().includes(keyword) ||
+row.Sektor.toLowerCase().includes(keyword);
 
-            return matchSearch && matchClass;
-        });
+const matchClass =
+klas === "all" ||
+row.Klasifikasi.includes(klas);
 
-        if(aktivitas.length > 0){
-            return {...sektor, Aktivitas: aktivitas};
-        }
-    });
+return matchSearch && matchClass;
 
-    filteredData = result.filter(x => x);
-    renderTree(filteredData);
+});
+
+renderTree(filtered);
+
 }
 
 document.getElementById("searchBox").addEventListener("input", applyFilter);
 document.getElementById("filterClass").addEventListener("change", applyFilter);
 
 
-// RENDER TREE
+// ===== TREE
 function renderTree(data){
 
 const container = document.getElementById("treeContainer");
 container.innerHTML = "";
 
-data.forEach(sektor => {
-
-    const sektorDiv = document.createElement("div");
-    sektorDiv.className = "mb-4";
-
-    const header = document.createElement("div");
-    header.className = "tree-item font-semibold text-lg text-[#003f5c]";
-    header.innerHTML = "▶ " + sektor.Sektor;
-
-    const children = document.createElement("div");
-    children.style.display = "none";
-    children.className = "ml-4 mt-2";
-
-    header.onclick = () => {
-        children.style.display = children.style.display === "none" ? "block" : "none";
-        header.innerHTML = children.style.display === "block"
-            ? "▼ " + sektor.Sektor
-            : "▶ " + sektor.Sektor;
-    };
-
-    sektor.Aktivitas.forEach(act => {
-
-        const actDiv = document.createElement("div");
-        actDiv.className = "p-3 border rounded mb-2 bg-gray-50";
-
-        actDiv.innerHTML = `
-        <b>${act.NamaAktivitas}</b><br>
-        <span class="text-xs text-blue-600">${act.Klasifikasi}</span>
-        <div class="text-sm mt-2">${act.Keterangan}</div>
-        `;
-
-        children.appendChild(actDiv);
-    });
-
-    sektorDiv.appendChild(header);
-    sektorDiv.appendChild(children);
-
-    container.appendChild(sektorDiv);
-});
+if(data.length === 0){
+container.innerHTML = "Tidak ada data.";
+return;
 }
 
+const grouped = {};
 
-// EXPORT EXCEL (CSV)
+data.forEach(row => {
+if(!grouped[row.Sektor]) grouped[row.Sektor] = [];
+grouped[row.Sektor].push(row);
+});
+
+Object.keys(grouped).forEach(sektor => {
+
+const sektorDiv = document.createElement("div");
+sektorDiv.className = "mb-4";
+
+const header = document.createElement("div");
+header.className = "tree-item font-semibold text-lg text-[#003f5c]";
+header.innerHTML = "▶ " + sektor;
+
+const children = document.createElement("div");
+children.style.display = "none";
+children.className = "ml-4 mt-2";
+
+header.onclick = () => {
+children.style.display =
+children.style.display === "none" ? "block" : "none";
+
+header.innerHTML =
+children.style.display === "block"
+? "▼ " + sektor
+: "▶ " + sektor;
+};
+
+grouped[sektor].forEach(row => {
+
+const div = document.createElement("div");
+div.className = "p-3 border rounded mb-2 bg-gray-50";
+
+div.innerHTML = `
+<b>${row.Aktivitas}</b><br>
+<span class="text-xs text-blue-600">${row.Klasifikasi}</span>
+<div class="text-xs mt-2">
+KBLI: ${row.KBLI} | TSC: ${row.TSC}
+</div>
+`;
+
+children.appendChild(div);
+
+});
+
+sektorDiv.appendChild(header);
+sektorDiv.appendChild(children);
+container.appendChild(sektorDiv);
+
+});
+
+}
+
+// ===== EXPORT
 document.getElementById("exportBtn").addEventListener("click", () => {
 
-    let rows = [["Sektor","Aktivitas","Klasifikasi","Keterangan"]];
+let rows = [["Sektor","TSC","KBLI","Aktivitas","Klasifikasi"]];
 
-    filteredData.forEach(sektor => {
-        sektor.Aktivitas.forEach(act => {
-            rows.push([
-                sektor.Sektor,
-                act.NamaAktivitas,
-                act.Klasifikasi,
-                act.Keterangan.replace(/<[^>]*>?/gm, "")
-            ]);
-        });
-    });
-
-    let csv = rows.map(e => e.join(",")).join("\n");
-
-    const blob = new Blob([csv], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "TKBI_Filter.csv";
-    a.click();
+explorerData.forEach(row => {
+rows.push([
+row.Sektor,
+row.TSC,
+row.KBLI,
+row.Aktivitas,
+row.Klasifikasi
+]);
 });
+
+let csv = rows.map(e => e.join(",")).join("\n");
+
+const blob = new Blob([csv], { type: "text/csv" });
+const url = URL.createObjectURL(blob);
+
+const a = document.createElement("a");
+a.href = url;
+a.download = "TKBI_Filter.csv";
+a.click();
+
+});
+
+// START
+loadTKBI();
 
 </script>
 
