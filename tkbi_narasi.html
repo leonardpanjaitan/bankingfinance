@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TKBI v3 Narasi</title>
+<title>TKBI v3 Narasi Regulator</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -27,8 +27,14 @@ body { font-family: Inter, Arial; }
 <div class="container mx-auto p-6">
 
 <h1 class="text-3xl font-bold text-[#003f5c] mb-6">
-TKBI v3 – Narasi Teknis
+TKBI v3 – Narasi Regulator
 </h1>
+
+<!-- SEARCH -->
+
+<input id="searchBox"
+class="w-full border rounded p-3 mb-4"
+placeholder="Cari sektor, KBLI, atau kata dalam narasi...">
 
 <div id="treeContainer" class="bg-white p-6 rounded shadow">
 Loading...
@@ -36,7 +42,7 @@ Loading...
 
 <div class="mt-6">
 <a href="index.html" class="bg-gray-800 text-white px-5 py-2 rounded">
-Back
+⬅ Back
 </a>
 </div>
 
@@ -45,6 +51,7 @@ Back
 <script>
 
 const VERSION = new Date().getTime();
+let flatData = [];
 
 // ===== LOAD JSON =====
 fetch("tkbi_v3_hierarchy_indonesia_min.json?v=" + VERSION)
@@ -59,9 +66,9 @@ console.error(err);
 // ===== BUILD =====
 function buildExplorer(data){
 
-let flat = [];
+flatData = [];
 
-// LOOP SEKTOR → TSC → KBLI
+// LOOP struktur JSON
 Object.keys(data).forEach(sektor => {
 
 Object.keys(data[sektor]).forEach(tsc => {
@@ -70,16 +77,13 @@ Object.keys(data[sektor][tsc]).forEach(kbli => {
 
 const obj = data[sektor][tsc][kbli];
 
-flat.push({
+flatData.push({
 sektor,
 tsc,
 kbli,
-aktivitas: obj.Aktivitas || "",
+nama: obj.NamaAktivitas || "",
 klasifikasi: obj.Klasifikasi || "",
-pilar: obj.Pilar || [],
-dnsh: obj.DNSH || [],
-safeguards: obj.Safeguards || [],
-logic: obj.Logic || []
+narasi: obj.Keterangan || ""
 });
 
 });
@@ -88,8 +92,24 @@ logic: obj.Logic || []
 
 });
 
-render(flat);
+render(flatData);
 }
+
+// ===== SEARCH =====
+document.getElementById("searchBox").addEventListener("input", function(){
+
+const keyword = this.value.toLowerCase();
+
+const filtered = flatData.filter(x =>
+x.sektor.toLowerCase().includes(keyword) ||
+x.kbli.toLowerCase().includes(keyword) ||
+x.nama.toLowerCase().includes(keyword) ||
+x.narasi.toLowerCase().includes(keyword)
+);
+
+render(filtered);
+
+});
 
 // ===== RENDER =====
 function render(data){
@@ -119,20 +139,35 @@ header.onclick = () => {
 body.style.display = body.style.display === "none" ? "block" : "none";
 };
 
+// aktivitas
 grouped[sektor].forEach(row => {
 
 const card = document.createElement("div");
-card.className = "border p-3 mt-2";
+card.className = "border p-3 mt-2 bg-gray-50";
 
-card.innerHTML = `
-<b>${row.aktivitas}</b><br>
-KBLI: ${row.kbli}<br>
-Klasifikasi: ${row.klasifikasi}<br>
-Pilar: ${row.pilar.join(", ")}<br>
-DNSH: ${row.dnsh.join(", ")}<br>
-Safeguards: ${row.safeguards.join(", ")}<br>
-Logic: ${Array.isArray(row.logic) ? row.logic.join("<br>") : ""}
+const title = document.createElement("div");
+title.innerHTML = "▶ " + row.nama;
+title.className = "tree-item font-semibold";
+
+const detail = document.createElement("div");
+detail.style.display = "none";
+
+title.onclick = () => {
+detail.style.display =
+detail.style.display === "none" ? "block" : "none";
+};
+
+// FULL NARASI
+detail.innerHTML = `
+<div class="mt-2 text-sm">
+<b>KBLI:</b> ${row.kbli}<br>
+<b>Klasifikasi:</b> ${row.klasifikasi}<br><br>
+${row.narasi}
+</div>
 `;
+
+card.appendChild(title);
+card.appendChild(detail);
 
 body.appendChild(card);
 
