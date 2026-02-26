@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Explorer TKBI Versi 3</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- ===== ANTI CACHE ===== -->
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+</style>
+
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<div class="container mx-auto p-6">
+
+```
+<!-- HEADER -->
+<header class="text-center mb-8">
+    <h1 class="text-3xl md:text-4xl font-bold text-[#003f5c]">
+        TKBI Versi 3 – Explorer Non-UMKM
+    </h1>
+    <p class="text-gray-600 mt-2">
+        Technical Screening Criteria – Taksonomi Keuangan Berkelanjutan Indonesia
+    </p>
+</header>
+
+<!-- SEARCH -->
+<div class="bg-white rounded-lg shadow p-4 mb-6">
+    <input id="searchBox"
+           type="text"
+           placeholder="Cari KBLI, sektor, atau kata kunci..."
+           class="w-full border rounded-lg p-3">
+</div>
+
+<!-- TABLE -->
+<div class="bg-white rounded-lg shadow overflow-auto">
+    <table class="min-w-full text-sm" id="tkbiTable">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="p-2 border">Sektor</th>
+                <th class="p-2 border">KBLI</th>
+                <th class="p-2 border">TSC</th>
+                <th class="p-2 border">DNSH</th>
+                <th class="p-2 border">RMT</th>
+                <th class="p-2 border">Aspek Sosial</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- ===== BUTTON AREA ===== -->
+<div class="text-center mt-10 space-y-4">
+
+    <!-- Tombol Narasi -->
+    <a href="tkbi_narasi.html"
+       class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700">
+       📘 TKBI v3 Narasi
+    </a>
+
+    <!-- Back -->
+    <div>
+        <a href="index.html"
+           class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-700">
+           ⬅ Back to Main Page
+        </a>
+    </div>
+
+</div>
+```
+
+</div>
+
+<script>
+
+// ===== ANTI CACHE VERSION =====
+const VERSION = new Date().getTime();
+
+// ===== LOAD XML =====
+let tkbiData = [];
+
+fetch("Explorer_TKBI_NonUMKM_2026Feb241717.xml?v=" + VERSION)
+.then(res => res.text())
+.then(data => {
+
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(data, "text/xml");
+
+    const sektor = xml.getElementsByTagName("Sektor");
+
+    for (let i = 0; i < sektor.length; i++) {
+
+        tkbiData.push({
+            nama: sektor[i].getElementsByTagName("Nama")[0]?.textContent || "",
+            kbli: sektor[i].getElementsByTagName("KBLI")[0]?.textContent || "",
+            tsc: sektor[i].getElementsByTagName("TSC")[0]?.textContent || "",
+            dnsh: sektor[i].getElementsByTagName("DNSH")[0]?.textContent || "",
+            rmt: sektor[i].getElementsByTagName("RMT")[0]?.textContent || "",
+            sosial: sektor[i].getElementsByTagName("AspekSosial")[0]?.textContent || ""
+        });
+    }
+
+    renderTable(tkbiData);
+})
+.catch(err => {
+    document.getElementById("tkbiTable").innerHTML =
+        "<tr><td colspan='6'>Error loading XML</td></tr>";
+    console.error(err);
+});
+
+
+// ===== RENDER TABLE =====
+function renderTable(data) {
+
+    const tbody = document.querySelector("#tkbiTable tbody");
+    tbody.innerHTML = "";
+
+    data.forEach(row => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td class="border p-2">${row.nama}</td>
+            <td class="border p-2">${row.kbli}</td>
+            <td class="border p-2 whitespace-pre-wrap">${row.tsc}</td>
+            <td class="border p-2 whitespace-pre-wrap">${row.dnsh}</td>
+            <td class="border p-2 whitespace-pre-wrap">${row.rmt}</td>
+            <td class="border p-2 whitespace-pre-wrap">${row.sosial}</td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+}
+
+
+// ===== SEARCH =====
+document.getElementById("searchBox").addEventListener("input", function () {
+
+    const keyword = this.value.toLowerCase();
+
+    const filtered = tkbiData.filter(item =>
+        item.nama.toLowerCase().includes(keyword) ||
+        item.kbli.toLowerCase().includes(keyword) ||
+        item.tsc.toLowerCase().includes(keyword)
+    );
+
+    renderTable(filtered);
+});
+
+</script>
+
+</body>
+</html>
