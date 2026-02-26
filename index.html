@@ -1,139 +1,190 @@
 <!DOCTYPE html> 
+
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Training for Banking & Finance Industry - Created by Leonard Tiopan Panjaitan, MT, CSRA, CGPS, CPS @2025</title>
-  <style>
-    :root{
-      --bg:#f8f9fa;
-      --card:#ffffff;
-      --text:#2c3e50;
-      --muted:#4b5563;
-      --primary:#007bff;
-      --success:#28a745;
-      --warning:#fd7e14;
-      --info:#17a2b8;
-      --radius:12px;
-      --shadow: 0 6px 20px rgba(0,0,0,0.06);
-      --gap:16px;
-    }
-    html,body{height:100%;margin:0}
-    body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background:var(--bg);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      color:var(--text);
-    }
-    .card{
-      width:100%;
-      max-width:920px;
-      background:var(--card);
-      padding:34px;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      text-align:center;
-    }
-    .logo{
-      display:block;
-      margin:0 auto 12px;
-      max-width:140px;
-      width:28%;
-      height:auto;
-      border-radius:8px;
-    }
-    .subtitle{
-      font-size:14px;
-      margin-bottom:8px;
-      color:var(--muted);
-    }
-    .subtitle a{color:var(--primary); text-decoration:none; font-weight:600}
-    h1{
-      margin:6px 0 26px;
-      font-size:28px;
-      line-height:1.1;
-    }
-    .button-container{
-      display:flex;
-      gap:var(--gap);
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:200px;
-      padding:14px 22px;
-      border-radius:10px;
-      color:#fff;
-      text-decoration:none;
-      font-size:16px;
-      cursor:pointer;
-      border:none;
-      transition:transform .12s ease, box-shadow .12s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    .btn:active{transform:translateY(1px)}
-    .btn-tkbi{background:var(--primary)}
-    .btn-icofr{background:var(--success)}
-    .btn-recovery{background:var(--warning)}
-    .btn-stresstest{background:var(--info)}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    /* NEW badge */
-    .badge{
-      display:inline-block;
-      background:#eef6ff;
-      color:#0366d6;
-      font-size:12px;
-      padding:4px 8px;
-      border-radius:6px;
-      margin-left:6px;
-      font-weight:600;
-    }
+<title>Training for Banking & Finance Industry</title>
 
-    .note-under-buttons{
-      margin-top:12px;
-      font-size:14px;
-      color:var(--muted)
-    }
-  </style>
+<!-- ===== Anti Cache Global ===== -->
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<style>
+:root{
+--bg:#f8f9fa;
+--card:#ffffff;
+--text:#2c3e50;
+--muted:#4b5563;
+--primary:#007bff;
+--success:#28a745;
+--warning:#fd7e14;
+--info:#17a2b8;
+--purple:#6f42c1;
+--radius:12px;
+--shadow: 0 6px 20px rgba(0,0,0,0.06);
+--gap:16px;
+}
+html,body{height:100%;margin:0}
+body {
+font-family: Inter, Arial, Helvetica, sans-serif;
+background:var(--bg);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+color:var(--text);
+}
+.card{
+width:100%;
+max-width:920px;
+background:var(--card);
+padding:34px;
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+text-align:center;
+}
+.logo{
+display:block;
+margin:0 auto 12px;
+max-width:140px;
+width:28%;
+border-radius:8px;
+}
+.subtitle{
+font-size:14px;
+margin-bottom:8px;
+color:var(--muted);
+}
+.subtitle a{color:var(--primary); text-decoration:none; font-weight:600}
+h1{
+margin:6px 0 26px;
+font-size:28px;
+line-height:1.1;
+}
+.button-container{
+display:flex;
+gap:var(--gap);
+justify-content:center;
+flex-wrap:wrap;
+}
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:200px;
+padding:14px 22px;
+border-radius:10px;
+color:#fff;
+text-decoration:none;
+font-size:16px;
+cursor:pointer;
+border:none;
+transition:transform .12s ease;
+}
+.btn:active{transform:translateY(1px)}
+
+.btn-tkbi{background:var(--primary)}
+.btn-narasi{background:var(--purple)}
+.btn-icofr{background:var(--success)}
+.btn-recovery{background:var(--warning)}
+.btn-stresstest{background:var(--info)}
+
+.badge{
+display:inline-block;
+background:#eef6ff;
+color:#0366d6;
+font-size:12px;
+padding:4px 8px;
+border-radius:6px;
+margin-left:6px;
+font-weight:600;
+}
+
+.note-under-buttons{
+margin-top:12px;
+font-size:14px;
+color:var(--muted)
+}
+</style>
+
 </head>
+
 <body>
-  <div class="card">
 
-    <img class="logo"
-         src="https://greenproductivityblog.wordpress.com/wp-content/uploads/2025/04/logo-gp-official-leonard.jpg?w=474"
-         alt="Green Productivity — Leonard" loading="lazy">
+<div class="card">
 
-    <p class="subtitle">
-      ESG &amp; Sustainable Finance Information Center supported by 
-      <a href="https://greenproductivityblog.wordpress.com" target="_blank">greenproductivity.online</a>
-    </p>
+<img class="logo"
+src="https://greenproductivityblog.wordpress.com/wp-content/uploads/2025/04/logo-gp-official-leonard.jpg?w=474"
+alt="Green Productivity — Leonard">
 
-    <h1>Training for Banking &amp; Finance Industry</h1>
+<p class="subtitle">
+ESG &amp; Sustainable Finance Information Center supported by 
+<a href="https://greenproductivityblog.wordpress.com" target="_blank">
+greenproductivity.online</a>
+</p>
 
-    <!-- Buttons -->
-    <div class="button-container">
+<h1>Training for Banking &amp; Finance Industry</h1>
 
-      <!-- UPDATED TKBI BUTTON -->
-      <a href="tkbi.html" class="btn btn-tkbi">
-        TKBI Versi 3
-        <span class="badge">Interactive Explorer</span>
-      </a>
+<!-- ===== BUTTONS ===== -->
 
-      <a href="icofr.html" class="btn btn-icofr">ICOFR (Integritas Laporan Keuangan)</a>
-      <a href="recoverytesting.html" class="btn btn-recovery">Recovery Plan (Stress Testing)</a>
-      <a href="stresstest.html" class="btn btn-stresstest">Stress Test Calculator for Recovery Plan</a>
-    </div>
+<div class="button-container">
 
-    <p class="note-under-buttons">
-      Peserta akan mendapatkan Kertas Kerja (XLS/Word) Sesuai Materi Training.
-    </p>
+<!-- Explorer -->
 
-  </div>
+<a href="#" id="btnExplorer" class="btn btn-tkbi">
+TKBI Versi 3
+<span class="badge">Interactive Explorer</span>
+</a>
+
+<!-- Narasi -->
+
+<a href="#" id="btnNarasi" class="btn btn-narasi">
+TKBI v3 Narasi
+<span class="badge">Technical Detail</span>
+</a>
+
+<a href="icofr.html" class="btn btn-icofr">
+ICOFR (Integritas Laporan Keuangan)
+</a>
+
+<a href="recoverytesting.html" class="btn btn-recovery">
+Recovery Plan (Stress Testing)
+</a>
+
+<a href="stresstest.html" class="btn btn-stresstest">
+Stress Test Calculator for Recovery Plan
+</a>
+
+</div>
+
+<p class="note-under-buttons">
+Peserta akan mendapatkan Kertas Kerja (XLS/Word) Sesuai Materi Training.
+</p>
+
+</div>
+
+<script>
+
+// ===== Anti Cache Version =====
+const VERSION = new Date().getTime();
+
+// Explorer
+document.getElementById("btnExplorer").onclick = function(e){
+e.preventDefault();
+window.location.href = "tkbi.html?v=" + VERSION;
+};
+
+// Narasi
+document.getElementById("btnNarasi").onclick = function(e){
+e.preventDefault();
+window.location.href = "tkbi_narasi.html?v=" + VERSION;
+};
+
+</script>
+
 </body>
 </html>
