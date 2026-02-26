@@ -47,7 +47,7 @@ Back
 const VERSION = new Date().getTime();
 
 // ===== LOAD JSON =====
-fetch("tkbi_v3_hierarchy_indonesia_correct.json?v=" + VERSION)
+fetch("tkbi_v3_hierarchy_indonesia_min.json?v=" + VERSION)
 .then(r => r.json())
 .then(data => buildExplorer(data))
 .catch(err => {
